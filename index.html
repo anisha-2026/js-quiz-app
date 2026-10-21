@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogicFast IT Quiz</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-logo">LF</div>
+      <div>
+        <h1>LogicFast Academy</h1>
+        <p>Interactive IT Assessment</p>
+      </div>
+    </div>
+    <button id="adminToggle" class="secondary-btn">Admin Panel</button>
+  </header>
+
+  <main class="container">
+    <section id="welcomeScreen" class="panel">
+      <span class="eyebrow">KNOWLEDGE • PRACTICE • GROW</span>
+      <h2>Test Your IT Knowledge</h2>
+      <p class="muted">Enter your details and start your assessment.</p>
+
+      <form id="studentForm">
+        <label for="studentName">Full Name</label>
+        <input id="studentName" name="studentName"
+          type="text" placeholder="Enter your full name" required
+          maxlength="70">
+
+        <label for="studentEmail">Email Address</label>
+        <input id="studentEmail" name="studentEmail"
+          type="email" placeholder="Enter your email" required
+          maxlength="120">
+
+        <label for="studentCourse">Select Course</label>
+        <select id="studentCourse" name="studentCourse" required>
+          <option value="">Choose a course</option>
+          <option>Web Development</option>
+          <option>Computer Fundamentals</option>
+          <option>JavaScript</option>
+          <option>Database Systems</option>
+          <option>Cybersecurity</option>
+        </select>
+
+        <div class="instructions">
+          <strong>Quiz Instructions</strong>
+          <p>• Each question has four options.</p>
+          <p>• You have 30 seconds per question.</p>
+          <p>• Your score appears at the end.</p>
+        </div>
+        <button class="primary-btn full-btn" type="submit">
+          Start Quiz →
+        </button>
+      </form>
+    </section>
+
+    <section id="quizScreen" class="panel hidden">
+      <div class="quiz-top">
+        <div>
+          <span class="eyebrow">YOUR ASSESSMENT</span>
+          <h2 id="greeting">Good luck!</h2>
+        </div>
+        <div class="timer" id="timer" aria-live="polite">30s</div>
+      </div>
+
+      <div class="progress-info">
+        <span id="questionCounter">Question 1 of 8</span>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="progress-track">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+
+      <h3 id="questionText">Question appears here</h3>
+      <div id="options" class="options"></div>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+
+      <div class="quiz-actions">
+        <button id="nextBtn" class="primary-btn" disabled>
+          Next Question →
+        </button>
+      </div>
+      <p class="keyboard-hint">Keyboard shortcuts: press 1, 2, 3 or 4 to answer.</p>
+    </section>
+
+    <section id="resultScreen" class="panel hidden">
+      <div class="result-icon">✓</div>
+      <span class="eyebrow">ASSESSMENT COMPLETED</span>
+      <h2 id="resultHeading">Your Results</h2>
+      <p id="studentSummary" class="muted"></p>
+
+      <div class="score-card">
+        <span>Your Score</span>
+        <div><strong id="scoreText">0/8</strong></div>
+        <p id="gradeText"></p>
+      </div>
+
+      <div class="result-actions">
+        <button id="reviewBtn" class="secondary-btn">Review Answers</button>
+        <button id="restartBtn" class="primary-btn">Restart Quiz</button>
+      </div>
+      <div id="reviewArea" class="review-area hidden"></div>
+    </section>
+
+    <section id="adminScreen" class="panel hidden">
+      <span class="eyebrow">ASSESSMENT MANAGEMENT</span>
+      <h2>Admin Panel</h2>
+      <p class="muted">Manage your quiz question bank.</p>
+
+      <form id="adminLoginForm">
+        <label for="adminPassword">Admin Password</label>
+        <input id="adminPassword" type="password"
+          placeholder="Enter admin password" required>
+        <button class="primary-btn" type="submit">Sign In</button>
+      </form>
+
+      <div id="adminTools" class="hidden">
+        <div class="admin-heading">
+          <h3>Manage Questions</h3>
+          <button id="adminLogout" class="secondary-btn">Sign Out</button>
+        </div>
+
+        <form id="questionForm">
+          <input id="editQuestionId" type="hidden">
+
+          <label for="questionInput">Question</label>
+          <textarea id="questionInput" required maxlength="500"
+            placeholder="Enter the question"></textarea>
+
+          <label for="option1">Option 1</label>
+          <input id="option1" required maxlength="200">
+          <label for="option2">Option 2</label>
+          <input id="option2" required maxlength="200">
+          <label for="option3">Option 3</label>
+          <input id="option3" required maxlength="200">
+          <label for="option4">Option 4</label>
+          <input id="option4" required maxlength="200">
+
+          <label for="correctAnswer">Correct Answer</label>
+          <select id="correctAnswer" required>
+            <option value="0">Option 1</option>
+            <option value="1">Option 2</option>
+            <option value="2">Option 3</option>
+            <option value="3">Option 4</option>
+          </select>
+
+          <div class="admin-actions">
+            <button class="primary-btn" type="submit">Save Question</button>
+            <button id="cancelEdit" class="secondary-btn"
+              type="button">Clear Form</button>
+          </div>
+        </form>
+
+        <label for="questionSearch">Search Questions</label>
+        <input id="questionSearch" type="search"
+          placeholder="Search by question..." >
+
+        <p id="adminMessage" class="feedback" aria-live="polite"></p>
+        <div id="questionList"></div>
+        <button id="backBtn" class="secondary-btn full-btn">
+          Back to Home
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 LogicFast Academy · IT Knowledge Assessment</p>
+  </footer>
+
+  <script src="questions.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>
